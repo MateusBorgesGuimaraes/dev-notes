@@ -1,0 +1,32 @@
+.adminLayout {
+  width: 100%;
+}
+
+.nav {
+  display: flex;
+  gap: 12px;
+  padding-block: 24px;
+}
+
+.navLink {
+  background: var(--surface-2);
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  transition: all 0.2s ease;
+}
+
+.navLink svg {
+  color: var(--status-draft-text);
+}
+
+.navLink:hover,
+.navLink.navLinkActive {
+  background: var(--text-accent);
+  border: 1px solid transparent;
+}
+
+.navLink:hover svg,
+.navLink.navLinkActive svg {
+  color: #fff;
+}

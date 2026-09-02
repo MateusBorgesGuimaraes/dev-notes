@@ -1,0 +1,25 @@
+.buttonLink {
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    border: 1px solid transparent;
+    transition: background-color 0.2s ease;
+}
+
+.primary {
+    background-color: var(--text-primary);
+    color: var(--text-on-accent);
+}
+
+.primary:hover {
+    background-color: #2a2a2a;
+}
+
+.outline {
+    border-color: var(--border);
+    color: var(--text-primary)
+}
+
+.outline:hover {
+    background-color: var(--surface-2);
+}

@@ -1,0 +1,30 @@
+.toggle {
+  display: flex;
+  gap: 4px;
+  max-width: max-content;
+  background: var(--surface-1);
+  border-radius: 8px;
+  padding: 3px;
+}
+
+.option {
+  font-size: 13px;
+  padding: 5px 12px;
+  border: none;
+  border-radius: calc(8px - 2px);
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.option:hover {
+  color: var(--text-primary);
+}
+
+.active {
+  background: var(--surface-2);
+  color: var(--text-primary);
+}

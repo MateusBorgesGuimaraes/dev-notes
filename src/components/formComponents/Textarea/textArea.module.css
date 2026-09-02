@@ -1,0 +1,36 @@
+.textareaBox {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.textareaBox label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.req {
+  color: var(--color-danger);
+}
+
+.textareaBox textarea {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.6;
+  padding: 12px;
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  resize: vertical;
+  min-height: 320px;
+}
+
+.textareaBox textarea:focus {
+  outline: none;
+  border-color: var(--text-accent);
+}
+
+.err {
+  font-size: 12px;
+  color: var(--color-danger);
+  margin: 0;
+}

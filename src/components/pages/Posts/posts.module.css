@@ -1,0 +1,15 @@
+.posts {
+  width: 100%;
+}
+
+.header {
+  padding-block: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header > h2 {
+  font-family: var(--font-voice);
+  font-weight: 300;
+}

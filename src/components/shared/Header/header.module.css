@@ -1,0 +1,29 @@
+.header {
+  width: 100%;
+  padding-block: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.header > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.userInfos {
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+  align-items: center;
+}
+
+.userInfos > a {
+  color: var(--text-secondary);
+}
+
+.userInfos > p {
+  color: var(--text-muted);
+}
