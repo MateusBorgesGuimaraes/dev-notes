@@ -1,7 +1,5 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import { useState } from "react";
 import {
   postNewSchema,
@@ -13,6 +11,7 @@ import { Input } from "../../formComponents/Input/input";
 import { Textarea } from "../../formComponents/Textarea/textArea";
 import { Button } from "../../formComponents/Button/button";
 import styles from "./postForm.module.css";
+import { MarkdownContent } from "../../ui/MarkdownContent/markdownContent";
 
 export const PostForm = () => {
   const {
@@ -140,15 +139,7 @@ export const PostForm = () => {
         <div className={styles.previewBox}>
           <span className={styles.previewLabel}>Preview</span>
           <div className={styles.preview}>
-            {content ? (
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                {content}
-              </ReactMarkdown>
-            ) : (
-              <p className={styles.previewEmpty}>
-                A pré-visualização aparece aqui.
-              </p>
-            )}
+            <MarkdownContent content={content} />
           </div>
         </div>
       </div>

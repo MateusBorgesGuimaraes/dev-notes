@@ -1,10 +1,6 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router";
+import Post from "../components/pages/Post/post";
 
-export const Route = createFileRoute('/posts/$slug')({
-  component: PostPage,
-})
-
-function PostPage() {
-  const { slug } = Route.useParams()
-  return <h1>Post: {slug}</h1>
-}
+export const Route = createFileRoute("/posts/$slug")({
+  component: Post,
+});
