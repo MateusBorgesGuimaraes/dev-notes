@@ -16,19 +16,19 @@ export function ViewToggle({ value, onChange }: ViewToggleProps) {
     >
       <button
         type="button"
-        className={`${styles.option} ${value === "card" ? styles.active : ""}`}
-        onClick={() => onChange("card")}
-        aria-pressed={value === "card"}
-      >
-        Cards
-      </button>
-      <button
-        type="button"
         className={`${styles.option} ${value === "list" ? styles.active : ""}`}
         onClick={() => onChange("list")}
         aria-pressed={value === "list"}
       >
         Lista
+      </button>
+      <button
+        type="button"
+        className={`${styles.option} ${value === "card" ? styles.active : ""}`}
+        onClick={() => onChange("card")}
+        aria-pressed={value === "card"}
+      >
+        Cards
       </button>
     </div>
   );

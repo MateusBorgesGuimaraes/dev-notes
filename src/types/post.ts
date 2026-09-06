@@ -4,13 +4,13 @@ export interface Post {
   id: number;
   title: string;
   slug: string;
-  excerpt: string | null;
+  excerpt: string;
   cover_image_url: string | null;
   status: PostStatus;
   author_id: number;
   published_at: string | null;
   created_at: string;
-  tags: string | null;
+  tags: PostTag[] | null;
   updated_at: string;
 }
 

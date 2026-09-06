@@ -1,8 +1,6 @@
 import { useParams } from "@tanstack/react-router";
 import { useFetchPostBySlug } from "../../../services/posts/useFetchPostBySlug";
 import styles from "./post.module.css";
-import remarkGfm from "remark-gfm";
-import ReactMarkdown from "react-markdown";
 import { formatPostDate } from "../../../utils/formatPostDate";
 import { getReadingTime } from "../../../utils/getReadingTime";
 import { MarkdownContent } from "../../ui/MarkdownContent/markdownContent";
@@ -15,7 +13,7 @@ export default function Post() {
   return (
     <section className={`container`}>
       <div className={styles.headerPost}>
-        <span>{data?.tags[0].name || ""}</span>
+        <span>{data?.tags?.[0]?.name || "no tag"}</span>
         <h1>{data?.title}</h1>
         <p>{data?.excerpt}</p>
 
