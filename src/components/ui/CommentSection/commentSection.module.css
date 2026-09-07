@@ -1,0 +1,20 @@
+.commentsContainer {
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.commentsContainer > p {
+  padding-bottom: 24px;
+}
+
+.commentsContainer > h2 {
+  font-family: var(--font-voice);
+  font-size: 28px;
+  color: var(--text-accent);
+  font-weight: 400;
+}
+
+.commentsContainer {
+  display: flex;
+  flex-direction: column;
+}

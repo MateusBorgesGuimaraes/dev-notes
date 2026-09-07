@@ -4,6 +4,7 @@ import styles from "./post.module.css";
 import { formatPostDate } from "../../../utils/formatPostDate";
 import { getReadingTime } from "../../../utils/getReadingTime";
 import { MarkdownContent } from "../../ui/MarkdownContent/markdownContent";
+import { CommentSection } from "../../ui/CommentSection/commentSection";
 
 export default function Post() {
   const { slug } = useParams({ from: "/posts/$slug" });
@@ -29,6 +30,8 @@ export default function Post() {
       <div className={styles.preview}>
         <MarkdownContent content={data?.content ?? ""} />
       </div>
+
+      {data?.id && <CommentSection postId={data.id} />}
     </section>
   );
 }
