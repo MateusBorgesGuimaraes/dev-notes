@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { useFetchApprovedComments } from "../../../services/comments/useFetchApprovedComments";
+import { CreateComment } from "../../forms/CreateComment/createComment";
 import { Comment } from "../Comment/comment";
 import styles from "./commentSection.module.css";
+import { ButtonLink } from "../ButtonLink/buttonLink";
 
 type CommentSectionProps = {
   postId: number;
@@ -8,6 +11,7 @@ type CommentSectionProps = {
 
 export const CommentSection = ({ postId }: CommentSectionProps) => {
   const { data, isError, isLoading } = useFetchApprovedComments(postId);
+  const [showCreateComment, setShowCreateComment] = useState(false);
 
   if (isError) {
     return <p>Erro ao buscar comentários</p>;
@@ -25,6 +29,13 @@ export const CommentSection = ({ postId }: CommentSectionProps) => {
         <p>Nenhum comentário</p>
       ) : (
         <>
+          <div className={styles.toggleBtn}>
+            <ButtonLink
+              onClick={() => setShowCreateComment(!showCreateComment)}
+              text={showCreateComment ? "Ocultar" : "Novo comentario"}
+            />
+          </div>
+          {showCreateComment && <CreateComment postId={postId} />}
           <h2>{comments.length} comentários</h2>
 
           {comments.map((comment) => (

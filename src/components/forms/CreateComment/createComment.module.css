@@ -1,0 +1,16 @@
+.createComment {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.commentTextarea {
+  min-height: 100px !important;
+  height: 100px;
+}
+
+.actions {
+  align-self: flex-end;
+  max-width: max-content;
+}

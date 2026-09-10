@@ -1,11 +1,19 @@
 .customButton {
   width: 100%;
-  padding: 8px 16px;
   border-radius: 6px;
-  font-size: 18px;
   border: 1px solid transparent;
   transition: background-color 0.2s ease;
   box-sizing: border-box;
+}
+
+.md {
+  padding: 8px 16px;
+  font-size: 18px;
+}
+
+.sm {
+  padding: 6px 12px;
+  font-size: 14px;
 }
 
 .primary {

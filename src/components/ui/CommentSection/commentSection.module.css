@@ -1,5 +1,5 @@
 .commentsContainer {
-  padding-top: 24px;
+  padding-top: 12px;
   border-top: 1px solid var(--border);
 }
 
@@ -9,7 +9,7 @@
 
 .commentsContainer > h2 {
   font-family: var(--font-voice);
-  font-size: 28px;
+  font-size: 18px;
   color: var(--text-accent);
   font-weight: 400;
 }
@@ -17,4 +17,8 @@
 .commentsContainer {
   display: flex;
   flex-direction: column;
+}
+
+.toggleBtn {
+  margin-block: 8px;
 }
