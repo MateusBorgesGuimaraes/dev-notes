@@ -5,9 +5,11 @@ import { formatPostDate } from "../../../utils/formatPostDate";
 import { getReadingTime } from "../../../utils/getReadingTime";
 import { MarkdownContent } from "../../ui/MarkdownContent/markdownContent";
 import { CommentSection } from "../../ui/CommentSection/commentSection";
+import { useAuthStore } from "../../../stores/authStore";
 
 export default function Post() {
   const { slug } = useParams({ from: "/posts/$slug" });
+  const { isAuthenticated, user } = useAuthStore();
   const { data, isFetching, isError } = useFetchPostBySlug(slug);
   if (isError) return <p>Erro ao buscar o post.</p>;
   if (isFetching) return <p>Carregando o post.</p>;
@@ -31,7 +33,12 @@ export default function Post() {
         <MarkdownContent content={data?.content ?? ""} />
       </div>
 
-      {data?.id && <CommentSection postId={data.id} />}
+      {data?.id && (
+        <CommentSection
+          postId={data.id}
+          isAuthor={isAuthenticated && data.author_id === user?.id}
+        />
+      )}
     </section>
   );
 }

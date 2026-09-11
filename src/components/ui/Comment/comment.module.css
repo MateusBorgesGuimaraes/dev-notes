@@ -8,17 +8,44 @@
 
 .commentHeader {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btns {
+  display: flex;
+  gap: 12px;
+}
+
+.btns button {
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.btns button:first-child {
+  background: var(--status-published-bg);
+  color: var(--status-published-text);
+}
+
+.btns button:last-child {
+  background: #f8b8b5;
+  color: var(--color-danger);
+}
+
+.fistPart {
+  display: flex;
   align-items: center;
   gap: 6px;
 }
 
-.commentHeader h2 {
+.fistPart h2 {
   font-family: var(--font-voice);
   font-size: 16px;
   font-weight: 400;
 }
 
-.commentHeader p {
+.fistPart p {
   font-size: 12px;
   color: var(--text-muted);
 }

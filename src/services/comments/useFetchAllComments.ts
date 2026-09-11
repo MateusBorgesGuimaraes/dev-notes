@@ -1,13 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchApprovedCommentsByPost } from "./fetchApprovedCommentsByPost";
+import { fetchAllCommentsByPost } from "./fetchAllCommentsByPost";
 
-export function useFetchApprovedComments(
+export function useFetchAllComments(
   postId: number,
   options?: { enabled?: boolean },
 ) {
   return useQuery({
     queryKey: ["comments", postId],
-    queryFn: () => fetchApprovedCommentsByPost(postId),
+    queryFn: () => fetchAllCommentsByPost(postId),
     enabled: options?.enabled ?? true,
   });
 }

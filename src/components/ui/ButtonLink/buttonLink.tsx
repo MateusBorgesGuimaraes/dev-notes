@@ -1,11 +1,13 @@
 import { Link } from "@tanstack/react-router";
 import styles from "./buttonLink.module.css";
 
-type Variant = "primary" | "outline";
+type Variant = "primary" | "outline" | "accent";
+type Size = "sm" | "md";
 
 type BaseProps = {
   text: string;
   variant?: Variant;
+  size?: Size;
 };
 
 type ButtonLinkProps =
@@ -22,12 +24,23 @@ type ButtonLinkProps =
       disabled?: boolean;
     });
 
+const variantClass: Record<Variant, string> = {
+  primary: "primary",
+  outline: "outline",
+  accent: "accent",
+};
+
 export const ButtonLink = ({
   text,
   variant = "primary",
+  size = "md",
   ...props
 }: ButtonLinkProps) => {
-  const className = `${styles.buttonLink} ${variant === "primary" ? styles.primary : styles.outline}`;
+  const className = [
+    styles.buttonLink,
+    styles[variantClass[variant]],
+    size === "sm" ? styles.sm : styles.md,
+  ].join(" ");
 
   if ("link" in props && props.link) {
     return (

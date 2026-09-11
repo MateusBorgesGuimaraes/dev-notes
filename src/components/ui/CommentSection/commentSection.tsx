@@ -4,13 +4,24 @@ import { CreateComment } from "../../forms/CreateComment/createComment";
 import { Comment } from "../Comment/comment";
 import styles from "./commentSection.module.css";
 import { ButtonLink } from "../ButtonLink/buttonLink";
+import { useFetchAllComments } from "../../../services/comments/useFetchAllComments";
 
 type CommentSectionProps = {
   postId: number;
+  isAuthor?: boolean;
 };
 
-export const CommentSection = ({ postId }: CommentSectionProps) => {
-  const { data, isError, isLoading } = useFetchApprovedComments(postId);
+export const CommentSection = ({
+  postId,
+  isAuthor = false,
+}: CommentSectionProps) => {
+  const approvedQuery = useFetchApprovedComments(postId, {
+    enabled: !isAuthor,
+  });
+  const allQuery = useFetchAllComments(postId, { enabled: isAuthor });
+
+  const { data, isError, isLoading } = isAuthor ? allQuery : approvedQuery;
+
   const [showCreateComment, setShowCreateComment] = useState(false);
 
   if (isError) {
@@ -25,21 +36,23 @@ export const CommentSection = ({ postId }: CommentSectionProps) => {
 
   return (
     <section className={styles.commentsContainer}>
+      <div className={styles.toggleBtn}>
+        <ButtonLink
+          size="sm"
+          variant="accent"
+          onClick={() => setShowCreateComment(!showCreateComment)}
+          text={showCreateComment ? "Ocultar" : "Novo comentario"}
+        />
+      </div>
+      {showCreateComment && <CreateComment postId={postId} />}
       {comments.length === 0 ? (
         <p>Nenhum comentário</p>
       ) : (
         <>
-          <div className={styles.toggleBtn}>
-            <ButtonLink
-              onClick={() => setShowCreateComment(!showCreateComment)}
-              text={showCreateComment ? "Ocultar" : "Novo comentario"}
-            />
-          </div>
-          {showCreateComment && <CreateComment postId={postId} />}
           <h2>{comments.length} comentários</h2>
 
           {comments.map((comment) => (
-            <Comment key={comment.id} comment={comment} />
+            <Comment isAuthor={isAuthor} key={comment.id} comment={comment} />
           ))}
         </>
       )}
