@@ -16,3 +16,8 @@
   color: var(--color-danger);
   font-size: 12px;
 }
+
+.desc {
+  color: var(--text-muted);
+  font-size: 12px;
+}

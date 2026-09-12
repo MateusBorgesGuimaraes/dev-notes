@@ -1,0 +1,16 @@
+.createTag {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.createTag > :first-child {
+  flex: 1;
+  min-width: 0;
+}
+
+.button {
+  flex-shrink: 0;
+  width: 140px;
+}

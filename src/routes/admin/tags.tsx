@@ -1,9 +1,6 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router";
+import { Tags } from "../../components/pages/Tags/tags";
 
-export const Route = createFileRoute('/admin/tags')({
-  component: RouteComponent,
-})
-
-function RouteComponent() {
-  return <div>Hello "/admin/tags"!</div>
-}
+export const Route = createFileRoute("/admin/tags")({
+  component: Tags,
+});

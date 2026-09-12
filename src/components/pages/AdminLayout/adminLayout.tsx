@@ -1,11 +1,6 @@
 import { Outlet, Link } from "@tanstack/react-router";
 import styles from "./adminLayout.module.css";
-import {
-  ListIcon,
-  ListPlusIcon,
-  MessageSquareTextIcon,
-  TagsIcon,
-} from "lucide-react";
+import { ListIcon, ListPlusIcon, TagsIcon } from "lucide-react";
 
 export default function AdminLayout() {
   return (
@@ -39,15 +34,6 @@ export default function AdminLayout() {
             aria-label="Tags"
           >
             <TagsIcon width={20} height={20} />
-          </Link>
-          <Link
-            to="/admin/comments"
-            className={styles.navLink}
-            activeProps={{ className: styles.navLinkActive }}
-            data-tooltip="Comentários"
-            aria-label="Comentários"
-          >
-            <MessageSquareTextIcon width={20} height={20} />
           </Link>
         </nav>
       </header>

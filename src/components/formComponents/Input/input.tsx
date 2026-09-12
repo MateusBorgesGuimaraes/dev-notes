@@ -5,10 +5,11 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   requerid?: boolean;
   label?: string;
   error?: string;
+  desc?: string;
 };
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ requerid, label, error, ...props }, ref) => {
+  ({ requerid, label, error, desc, ...props }, ref) => {
     return (
       <div className={styles.inputBox}>
         {label && (
@@ -17,6 +18,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           </label>
         )}
         <input ref={ref} {...props} />
+        {desc && <p className={styles.desc}>{desc}</p>}
         {error && <p className={styles.err}>{error}</p>}
       </div>
     );

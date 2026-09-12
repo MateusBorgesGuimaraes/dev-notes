@@ -1,0 +1,43 @@
+.tags {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.tags > h1 {
+  font-family: var(--font-voice);
+}
+
+.tags > p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+.desc {
+  margin-top: 4px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.tagList {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tagList li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.tagList li:last-child {
+  border: none;
+}
+
+.tagList li button {
+  font-size: 14px;
+  color: var(--color-danger);
+}
