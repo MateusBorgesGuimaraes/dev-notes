@@ -6,6 +6,7 @@ import styles from "./postsTable.module.css";
 import { ConfirmDialog } from "../../ui/ConfirmDialog/confirmDialog";
 import { useConfirm } from "../../../hooks/useConfirm";
 import { useState } from "react";
+import { TagsModal } from "../../ui/TagsModal/tagsModal";
 
 interface PostsTableProps {
   posts: Post[];
@@ -21,6 +22,7 @@ export function PostsTable({ posts }: PostsTableProps) {
   const { mutate: deletePost, isPending: isDeleting } = useDeletePost();
   const { mutate: publish, isPending: isPublishing } = usePublishPost();
   const { isOpen, requestConfirm, handleConfirm, handleCancel } = useConfirm();
+  const [tagsModalPostId, setTagsModalPostId] = useState<number | null>(null);
   const [pendingTitle, setPendingTitle] = useState("");
 
   const handleDelete = (id: number, title: string) => {
@@ -80,6 +82,13 @@ export function PostsTable({ posts }: PostsTableProps) {
                 )}
 
                 <button
+                  className={styles.linkButton}
+                  onClick={() => setTagsModalPostId(post.id)}
+                >
+                  Tags
+                </button>
+
+                <button
                   type="button"
                   className={styles.linkButtonDanger}
                   onClick={() => handleDelete(post.id, post.title)}
@@ -92,6 +101,13 @@ export function PostsTable({ posts }: PostsTableProps) {
           ))}
         </tbody>
       </table>
+      {tagsModalPostId !== null && (
+        <TagsModal
+          open={tagsModalPostId !== null}
+          postId={tagsModalPostId}
+          onClose={() => setTagsModalPostId(null)}
+        />
+      )}
 
       <ConfirmDialog
         open={isOpen}

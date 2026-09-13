@@ -9,9 +9,13 @@ import {
 } from "../../../services/posts/useFetchPosts";
 import { Pagination } from "../../ui/Pagination/pagination";
 import { formatPostDate } from "../../../utils/formatPostDate";
+import { useLocalStorageState } from "../../../stores/useLocalStorageState";
 
 export default function Home() {
-  const [viewFormat, setViewFormat] = useState<"list" | "card">("list");
+  const [viewFormat, setViewFormat] = useLocalStorageState<"list" | "card">(
+    "home-view-format",
+    "list",
+  );
   const [page, setPage] = useState(1);
   const { data: posts, isLoading, isError } = useFetchPosts(page);
 

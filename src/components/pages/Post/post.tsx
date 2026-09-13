@@ -33,6 +33,14 @@ export default function Post() {
         <MarkdownContent content={data?.content ?? ""} />
       </div>
 
+      {data?.tags && (
+        <ul className={styles.tags}>
+          {data?.tags.map((t) => (
+            <li key={t.id}>{t.name}</li>
+          ))}
+        </ul>
+      )}
+
       {data?.id && (
         <CommentSection
           postId={data.id}
