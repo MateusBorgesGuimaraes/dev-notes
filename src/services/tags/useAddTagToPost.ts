@@ -9,6 +9,7 @@ export function useAddTagToPost(postId: number) {
     mutationFn: (tagId: number) => addTagToPost(postId, tagId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["post-tags", postId] });
+      queryClient.invalidateQueries({ queryKey: ["post", postId] });
       toast.error("Tag adicionada com sucesso.");
     },
     onError: () => {

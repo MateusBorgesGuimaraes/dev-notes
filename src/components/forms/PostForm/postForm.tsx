@@ -5,32 +5,66 @@ import {
   postNewSchema,
   type PostNewSchema,
 } from "../../pages/PostNew/postNew.schema";
+
 import { useCreatePost } from "../../../services/posts/useCreatePost";
+import { useUpdatePost } from "../../../services/posts/useUpdatePost";
 import { useUploadImage } from "../../../services/uploads/useUploadImage";
 import { Input } from "../../formComponents/Input/input";
 import { Textarea } from "../../formComponents/Textarea/textArea";
 import { Button } from "../../formComponents/Button/button";
 import styles from "./postForm.module.css";
 import { MarkdownContent } from "../../ui/MarkdownContent/markdownContent";
+import {
+  postEditSchema,
+  type PostEditSchema,
+} from "../../pages/PostEdit/postEdit.schema";
 
-export const PostForm = () => {
+// Union: cria (com slug) ou edita (sem slug) — mantém um único componente
+// de formulário em vez de duplicar toda a estrutura de UI em dois arquivos.
+type PostFormProps =
+  | {
+      mode: "create";
+      postId?: never;
+      defaultValues?: never;
+    }
+  | {
+      mode: "edit";
+      postId: number;
+      defaultValues: PostEditSchema;
+    };
+
+export const PostForm = (props: PostFormProps) => {
+  const { mode } = props;
+  const isEdit = mode === "edit";
+
+  const schema = isEdit ? postEditSchema : postNewSchema;
+
   const {
     register,
     handleSubmit,
     watch,
     setValue,
     formState: { errors },
-  } = useForm<PostNewSchema>({
-    resolver: zodResolver(postNewSchema),
+  } = useForm<PostNewSchema | PostEditSchema>({
+    resolver: zodResolver(schema as any),
+    defaultValues: isEdit ? props.defaultValues : undefined,
   });
 
-  const { mutate, isPending } = useCreatePost();
+  const { mutate: createPost, isPending: isCreating } = useCreatePost();
+  // O hook só é útil no modo edit — no modo create, postId nunca existe,
+  // então passamos 0 apenas pra satisfazer o hook.
+  const { mutate: editPost, isPending: isEditing } = useUpdatePost(
+    isEdit ? props.postId : 0,
+  );
+
   const { mutate: uploadImage, isPending: isUploading } = useUploadImage();
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [uploadError, setUploadError] = useState<string | null>(null);
 
   const content = watch("content");
   const coverImageUrl = watch("cover_image_url");
+
+  const isPending = isCreating || isEditing;
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -50,8 +84,12 @@ export const PostForm = () => {
     });
   };
 
-  const onSubmit = (data: PostNewSchema) => {
-    mutate(data);
+  const onSubmit = (data: PostNewSchema | PostEditSchema) => {
+    if (isEdit) {
+      editPost(data as PostEditSchema);
+    } else {
+      createPost(data as PostNewSchema);
+    }
   };
 
   return (
@@ -65,14 +103,19 @@ export const PostForm = () => {
         {...register("title")}
       />
 
-      <Input
-        label="Slug"
-        placeholder="url-amigavel-do-post"
-        type="text"
-        requerid
-        error={errors.slug?.message}
-        {...register("slug")}
-      />
+      {!isEdit && (
+        <Input
+          label="Slug"
+          placeholder="url-amigavel-do-post"
+          type="text"
+          requerid
+          error={
+            (errors as typeof errors & { slug?: { message?: string } }).slug
+              ?.message
+          }
+          {...register("slug" as keyof PostNewSchema)}
+        />
+      )}
 
       <div className={styles.row}>
         <Input
@@ -150,7 +193,11 @@ export const PostForm = () => {
           variant="primary"
           disabled={isPending || isUploading}
         >
-          {isPending ? "Criando..." : "Criar post"}
+          {isPending
+            ? "Salvando..."
+            : isEdit
+              ? "Salvar alterações"
+              : "Criar post"}
         </Button>
       </div>
     </form>

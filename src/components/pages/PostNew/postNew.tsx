@@ -5,7 +5,7 @@ export default function PostNew() {
   return (
     <section className={`${styles.postNew} container`}>
       <h1>Novo post</h1>
-      <PostForm />
+      <PostForm mode="create" />
     </section>
   );
 }

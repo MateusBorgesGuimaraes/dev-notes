@@ -1,0 +1,9 @@
+.postEdit {
+  width: 100%;
+  padding-bottom: 24px;
+}
+
+.postEdit > h1 {
+  margin-bottom: 12px;
+  font-family: var(--font-voice);
+}
