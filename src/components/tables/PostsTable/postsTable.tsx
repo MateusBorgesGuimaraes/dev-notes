@@ -35,7 +35,7 @@ export function PostsTable({ posts }: PostsTableProps) {
   }
 
   return (
-    <>
+    <div className={styles.tableWrapper}>
       <table className={styles.table}>
         <thead>
           <tr>
@@ -118,6 +118,6 @@ export function PostsTable({ posts }: PostsTableProps) {
         onConfirm={handleConfirm}
         onCancel={handleCancel}
       />
-    </>
+    </div>
   );
 }

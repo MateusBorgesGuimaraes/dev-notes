@@ -5,163 +5,6 @@
   line-height: 1.4;
 }
 
-/* Parágrafos */
-.preview p {
-  margin-bottom: 1.25rem;
-  font-size: 16px;
-}
-
-/* Título */
-.preview h1 {
-  margin: 0 0 1.5rem;
-  font-weight: 400;
-  font-family: var(--font-voice);
-  font-size: 24px;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
-}
-
-/* Subtítulos */
-.preview h2 {
-  font-weight: 400;
-  margin: 2.5rem 0 1rem;
-  font-family: var(--font-voice);
-  font-size: 20px;
-  line-height: 1.25;
-  letter-spacing: -0.02em;
-}
-
-.preview h3 {
-  font-weight: 400;
-  margin: 2rem 0 0.75rem;
-  font-family: var(--font-voice);
-  font-size: 18px;
-  line-height: 1.3;
-}
-
-/* Listas */
-.preview ul,
-.preview ol {
-  margin: 1rem 0 1.5rem;
-  padding-left: 1.5rem;
-}
-
-.preview ul {
-  list-style: disc;
-}
-
-.preview ol {
-  list-style: decimal;
-}
-
-.preview li {
-  margin-bottom: 0.45rem;
-  padding-left: 0.25rem;
-}
-
-/* Negrito */
-.preview strong {
-  font-family: var(--font-body);
-  font-weight: 700;
-}
-
-/* Itálico */
-.preview em {
-  font-style: italic;
-}
-
-/* Links */
-.preview a {
-  color: var(--text-accent);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-/* Citação */
-.preview blockquote {
-  margin: 1.75rem 0;
-  padding: 0.75rem 1.25rem;
-  border-left: 3px solid var(--text-accent);
-  color: var(--text-secondary);
-  background: var(--surface-1);
-  border-radius: 0 8px 8px 0;
-  font-style: italic;
-}
-
-/* Código inline */
-.preview code {
-  padding: 0.15em 0.4em;
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  background: var(--surface-2);
-  font-family: var(--font-mono);
-  font-size: 0.85em;
-}
-
-/* Bloco de código */
-.preview pre {
-  overflow-x: auto;
-  margin: 1.5rem 0;
-  padding: 1.25rem;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--surface-2);
-}
-
-.preview pre code {
-  padding: 0;
-  border: none;
-  background: transparent;
-  font-size: 14px;
-}
-
-/* Linha horizontal */
-.preview hr {
-  margin: 2.5rem 0;
-  border: 0;
-  border-top: 1px solid var(--border);
-}
-
-/* Imagens */
-.preview img {
-  width: 100%;
-  height: auto;
-  margin: 2rem 0;
-  border-radius: 10px;
-}
-
-/* Tabelas - remarkGfm */
-.preview table {
-  width: 100%;
-  margin: 1.5rem 0;
-  border-collapse: collapse;
-  font-family: var(--font-body);
-  font-size: 14px;
-}
-
-.preview th,
-.preview td {
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--border);
-  text-align: left;
-}
-
-.preview th {
-  background: var(--surface-2);
-  font-weight: 600;
-}
-
-/* Estado vazio */
-.previewEmpty {
-  margin: 0;
-  color: var(--text-muted);
-  font-family: var(--font-body);
-  font-size: 15px;
-  text-align: center;
-}
-
-/*Estilos que nao tem haver com o markdown*/
-
 .headerPost {
   padding-block: 32px;
   margin-bottom: 32px;
@@ -172,6 +15,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  min-width: 0;
 }
 
 .headerPost > span {
@@ -184,12 +28,14 @@
   font-family: var(--font-voice);
   font-weight: 300;
   text-wrap: pretty;
+  overflow-wrap: anywhere;
 }
 
 .headerPost > p {
   color: var(--text-secondary);
   font-size: 16px;
   text-wrap: pretty;
+  overflow-wrap: anywhere;
 }
 
 .generalInfos {
@@ -197,12 +43,15 @@
   gap: 8px;
   font-size: 14px;
   color: var(--text-muted);
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .tags {
   display: flex;
   gap: 6px;
   margin-bottom: 12px;
+  flex-wrap: wrap;
 }
 
 .tags li {
@@ -211,4 +60,85 @@
   color: var(--text-secondary);
   padding: 4px 8px;
   border-radius: 999px;
+}
+
+/* Tablet */
+@media (max-width: 700px) {
+  .headerPost {
+    padding-block: 28px;
+    margin-bottom: 28px;
+  }
+
+  .headerPost > h1 {
+    font-size: 30px;
+    line-height: 1.15;
+  }
+
+  .headerPost > p {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+}
+
+/* Mobile */
+@media (max-width: 500px) {
+  .headerPost {
+    padding-block: 24px;
+    margin-bottom: 24px;
+    gap: 10px;
+  }
+
+  .headerPost > span {
+    font-size: 11px;
+  }
+
+  .headerPost > h1 {
+    font-size: 26px;
+    line-height: 1.15;
+  }
+
+  .headerPost > p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .generalInfos {
+    gap: 6px;
+    font-size: 12px;
+  }
+
+  .tags {
+    gap: 5px;
+  }
+
+  .tags li {
+    font-size: 11px;
+    padding: 4px 7px;
+  }
+}
+
+/* Mobile pequeno */
+@media (max-width: 380px) {
+  .headerPost {
+    padding-block: 20px;
+    margin-bottom: 20px;
+  }
+
+  .headerPost > h1 {
+    font-size: 23px;
+  }
+
+  .headerPost > p {
+    font-size: 13px;
+  }
+
+  .generalInfos {
+    gap: 5px;
+    font-size: 11px;
+  }
+
+  .tags li {
+    font-size: 11px;
+    padding: 3px 7px;
+  }
 }

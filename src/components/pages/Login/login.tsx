@@ -13,7 +13,7 @@ export default function Login() {
       <LoginForm />
 
       <p>
-        Não tem uma conta? <Link to="/login">Registrar</Link>
+        Não tem uma conta? <Link to="/register">Registrar</Link>
       </p>
     </section>
   );

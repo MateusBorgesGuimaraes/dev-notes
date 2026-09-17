@@ -28,3 +28,17 @@
   background: var(--surface-2);
   color: var(--text-primary);
 }
+
+@media (max-width: 600px) {
+  .toggle {
+    gap: 3px;
+    padding: 2px;
+    border-radius: 7px;
+  }
+
+  .option {
+    font-size: 12px;
+    padding: 4px 9px;
+    border-radius: 5px;
+  }
+}

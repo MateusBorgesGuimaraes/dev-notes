@@ -120,3 +120,9 @@ select:focus {
   border-color: var(--border-strong);
   box-shadow: 0 0 0 3px rgb(0 0 0 / 0.04);
 }
+
+@media (max-width: 880px) {
+  .container {
+    padding-inline: 16px;
+  }
+}

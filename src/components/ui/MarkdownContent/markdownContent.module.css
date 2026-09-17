@@ -1,10 +1,13 @@
 .markdown {
+  width: 100%;
+  min-width: 0;
   font-size: 16px;
   line-height: 1.8;
   color: var(--text-primary);
 }
 
 /* ---- Títulos ---- */
+
 .markdown h1,
 .markdown h2,
 .markdown h3,
@@ -13,6 +16,7 @@
   font-weight: 500;
   line-height: 1.3;
   margin: 1.75rem 0 0.75rem;
+  overflow-wrap: anywhere;
 }
 
 .markdown h1:first-child,
@@ -38,8 +42,10 @@
 }
 
 /* ---- Parágrafos e ênfase ---- */
+
 .markdown p {
   margin: 0 0 1.1rem;
+  overflow-wrap: anywhere;
 }
 
 .markdown strong {
@@ -51,10 +57,12 @@
 }
 
 /* ---- Links ---- */
+
 .markdown a {
   color: var(--text-accent);
   text-decoration: underline;
   text-underline-offset: 2px;
+  overflow-wrap: anywhere;
 }
 
 .markdown a:hover {
@@ -62,6 +70,7 @@
 }
 
 /* ---- Listas ---- */
+
 .markdown ul,
 .markdown ol {
   margin: 0 0 1.1rem;
@@ -78,6 +87,7 @@
 
 .markdown li {
   margin-bottom: 0.4rem;
+  overflow-wrap: anywhere;
 }
 
 .markdown li > ul,
@@ -87,6 +97,7 @@
 }
 
 /* Checkbox de task list (remark-gfm) */
+
 .markdown input[type="checkbox"] {
   margin-right: 8px;
   accent-color: var(--text-accent);
@@ -98,12 +109,14 @@
 }
 
 /* ---- Citações ---- */
+
 .markdown blockquote {
   margin: 0 0 1.1rem;
   padding: 0.25rem 0 0.25rem 1rem;
   border-left: 3px solid var(--border-strong);
   color: var(--text-secondary);
   font-style: italic;
+  overflow-wrap: anywhere;
 }
 
 .markdown blockquote p:last-child {
@@ -111,22 +124,27 @@
 }
 
 /* ---- Código inline ---- */
+
 .markdown code {
   font-family: var(--font-mono);
   font-size: 0.875em;
   background: var(--surface-2);
   padding: 2px 6px;
   border-radius: 4px;
+  overflow-wrap: anywhere;
 }
 
 /* ---- Blocos de código ---- */
+
 .markdown pre {
+  max-width: 100%;
   margin: 0 0 1.1rem;
   padding: 1rem 1.25rem;
   background: var(--surface-2);
   border: 0.5px solid var(--border);
   border-radius: 8px;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .markdown pre code {
@@ -135,16 +153,22 @@
   font-size: 13px;
   line-height: 1.6;
   color: var(--text-primary);
+  overflow-wrap: normal;
 }
 
 /* ---- Imagens ---- */
+
 .markdown img {
+  display: block;
+  max-width: 100%;
   width: 100%;
+  height: auto;
   border-radius: 8px;
   margin: 0.5rem 0 1.1rem;
 }
 
 .markdown figure {
+  max-width: 100%;
   margin: 0 0 1.1rem;
 }
 
@@ -156,6 +180,7 @@
 }
 
 /* ---- Linha horizontal ---- */
+
 .markdown hr {
   border: none;
   border-top: 0.5px solid var(--border);
@@ -163,6 +188,7 @@
 }
 
 /* ---- Tabelas (remark-gfm) ---- */
+
 .markdown table {
   width: 100%;
   border-collapse: collapse;
@@ -187,8 +213,171 @@
   background: var(--surface-1);
 }
 
-/* ---- Estado vazio (usado no editor, antes de digitar) ---- */
+/* ---- Estado vazio ---- */
+
 .empty {
   font-size: 14px;
   color: var(--text-muted);
+}
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+
+@media (max-width: 700px) {
+  .markdown {
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  .markdown h1 {
+    font-size: 24px;
+  }
+
+  .markdown h2 {
+    font-size: 20px;
+  }
+
+  .markdown h3 {
+    font-size: 17px;
+  }
+
+  .markdown h4 {
+    font-size: 15px;
+  }
+
+  .markdown pre {
+    padding: 0.9rem 1rem;
+  }
+
+  .markdown pre code {
+    font-size: 12.5px;
+  }
+
+  .markdown th,
+  .markdown td {
+    padding: 7px 10px;
+  }
+}
+
+@media (max-width: 500px) {
+  .markdown {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .markdown h1,
+  .markdown h2,
+  .markdown h3,
+  .markdown h4 {
+    line-height: 1.25;
+  }
+
+  .markdown h1 {
+    font-size: 22px;
+    margin-top: 1.5rem;
+  }
+
+  .markdown h2 {
+    font-size: 19px;
+    margin-top: 1.5rem;
+  }
+
+  .markdown h3 {
+    font-size: 17px;
+    margin-top: 1.35rem;
+  }
+
+  .markdown h4 {
+    font-size: 15px;
+  }
+
+  .markdown p {
+    margin-bottom: 1rem;
+  }
+
+  .markdown ul,
+  .markdown ol {
+    padding-left: 1.25rem;
+  }
+
+  .markdown li {
+    margin-bottom: 0.35rem;
+  }
+
+  .markdown li:has(> input[type="checkbox"]) {
+    margin-left: -1.25rem;
+  }
+
+  .markdown blockquote {
+    padding-left: 0.8rem;
+  }
+
+  .markdown pre {
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    border-radius: 7px;
+  }
+
+  .markdown pre code {
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .markdown img {
+    border-radius: 7px;
+  }
+
+  .markdown table {
+    font-size: 13px;
+  }
+
+  .markdown th,
+  .markdown td {
+    padding: 6px 8px;
+  }
+
+  .empty {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 380px) {
+  .markdown {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .markdown h1 {
+    font-size: 21px;
+  }
+
+  .markdown h2 {
+    font-size: 18px;
+  }
+
+  .markdown h3 {
+    font-size: 16px;
+  }
+
+  .markdown h4 {
+    font-size: 14px;
+  }
+
+  .markdown blockquote {
+    padding-left: 0.7rem;
+  }
+
+  .markdown pre {
+    padding: 0.7rem;
+  }
+
+  .markdown pre code {
+    font-size: 11.5px;
+  }
+
+  .markdown th,
+  .markdown td {
+    padding: 6px 7px;
+  }
 }
